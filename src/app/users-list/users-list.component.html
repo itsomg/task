@@ -1,0 +1,29 @@
+<div class="container">
+
+    <div class="mt-5">
+        <table class="table" id="excel-table">
+            <thead class="thead-blue">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td scope="row">{{user?.id}}</td>
+                    <td>
+                        <img src="{{user.avatar}}" height="50px" alt="Avatar">
+                    </td>
+                    <td>{{user?.first_name}} {{user.last_name}}</td>
+                    <td>{{user?.email}}</td>
+                    <td><button type="button" class="btn btn-primary" [routerLink]="['/user', user?.id]">View</button>
+                        <button type="button" class="btn btn-danger" (click)="deleteUser(user?.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

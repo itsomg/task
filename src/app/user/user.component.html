@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="center-div mt-5">
+    <div *ngIf="user" class="card card-container text-center">
+        <h3 class="mb-5">User Details</h3>
+        <img src="{{user?.avatar}}" height="50px" width="50px" class="img-center" alt="Avatar">
+        <p>{{user?.first_name}} {{user.last_name}}</p>
+        <p>{{user?.email}}</p>
+
+    </div>
+    <h3 *ngIf="!user">User not found</h3>
+    </div>
+</div>
