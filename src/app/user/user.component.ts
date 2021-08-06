@@ -12,6 +12,8 @@ import { User } from '../user.model';
 })
 export class UserComponent implements OnInit {
   public user: User;
+  subscription$: Subscription;
+
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
@@ -25,7 +27,7 @@ export class UserComponent implements OnInit {
    * @param id user id
    */
   getUser(id) {
-    this.userService.getUser(id).pipe(
+    this.subscription$ = this.userService.getUser(id).pipe(
       map((res => {
         this.user = res.data;
       }),
@@ -36,5 +38,10 @@ export class UserComponent implements OnInit {
     ).subscribe()
   }
 
-
+  /**
+  * destroy component
+  */
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
+  }
 }
